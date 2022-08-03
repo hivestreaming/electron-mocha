@@ -10,7 +10,7 @@ const fakeConsole = {
 
 for (const k in console) {
   if (hasOwnProperty.call(console, k) && k !== 'assert') {
-    fakeConsole[k] = (...args) => ipc.send('console-call', k, args)
+    fakeConsole[k] = async (...args) => await ipc.send('console-call', k, args)
   }
 }
 global.__defineGetter__('console', function () {
